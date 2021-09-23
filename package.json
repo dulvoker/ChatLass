@@ -1,0 +1,27 @@
+{
+  "name": "chatlas",
+  "version": "1.0.0",
+  "description": "Chat with your flatmates in realtime ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dulvoker/chatlas.git"
+  },
+  "author": "Dulat Amirkhanov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dulvoker/chatlas/issues"
+  },
+  "homepage": "https://github.com/dulvoker/chatlas#readme",
+  "dependencies": {
+    "moment": "^2.29.1",
+    "socket.io": "^4.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
