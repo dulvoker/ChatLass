@@ -134,7 +134,7 @@ a {
 }
 
 .join-header {
-	text-align: left;
+	text-align: center;
 	padding: 45px;
 	background: var(--dark-color-a);
 	border-top-left-radius: 10px;
@@ -167,14 +167,14 @@ a {
 }
 
 .join-main select {
-	font-size: 1px;
+	font-size: 20px;
 	padding: 5px;
 	height: 40px;
 	width: 100%;
 }
 
 .join-main .btn {
-	margin-top: 20px;
+	margin-top: 5px;
 	width: 100%;
 }
 
