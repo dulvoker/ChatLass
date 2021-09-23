@@ -5,11 +5,11 @@ socket.on('message', message => {
     console.log(message);
 })
 
-//sending message
-chatForm.addEventListener('submit', (e)=>{
+// sending message
+chatForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const msg = e.target.elements.msg.value;
-    
-    console.log(msg);
-})
+
+    socket.emit('messageSubmit', msg);
+});
