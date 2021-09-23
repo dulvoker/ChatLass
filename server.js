@@ -19,9 +19,13 @@ io.on('connection', socket => {
     //broadcasting to everyone except the user
     socket.broadcast.emit('message', 'New user has joined the chat');
 
+    socket.on('messageSubmit', (msg) => {
+        io.emit('message', msg);
+    })
+
     socket.on('disconnect', () => {
         io.emit('message', 'A user has left the chat');
-    })
+    });
 });
 
 
