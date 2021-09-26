@@ -3,6 +3,7 @@ const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 const formatMessage = require('./utils/messages');
+const { userJoin, getUserById } = require('./utils/users');
 
 const app = express();
 const server = http.createServer(app);
@@ -15,19 +16,23 @@ const botName = "Dulat Koke ";
 
 //events while connection
 io.on('connection', socket => {
-
-    //welcoming
-    socket.emit('message', formatMessage(botName, ' Welcomes you in Chatlass'));
-
-    //broadcasting to everyone except the user
-    socket.broadcast.emit('message', formatMessage(botName, ' has joined the chat'));
-
+    socket.on('joinRoom', ({username, room})=> {
+        const user = userJoin(socket.id, username, room);
+        socket.join(user.room);
+        //welcoming
+        socket.emit('message', formatMessage(botName, ' Welcome to ChatLass'));
+        // broadcasting to everyone except the user
+        socket.broadcast
+            .to(user.room)
+            .emit('message',formatMessage(botName, `${user.username} has joined the chat`));
+    });
     socket.on('messageSubmit', (msg) => {
-        io.emit('message', formatMessage("Username ", msg));
+        user = getUserById(socket.id);
+        io.to(user.room).emit('message', formatMessage( user.username, msg) );
     })
-
     socket.on('disconnect', () => {
-        io.emit('message', 'A user has left the chat');
+        userInfo = getUserById(socket.id);
+        io.to(userInfo.room).emit('message', formatMessage(botName, userInfo.username + `  has left the chat`));
     });
 });
 
